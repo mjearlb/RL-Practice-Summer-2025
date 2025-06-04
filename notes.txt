@@ -1,0 +1,18 @@
+6/4/25
+
+TODO: 
+Look into RL Libraries such as: 
+- OpenAI's Gymnasium <- for evaluation problems in 
+- RL-Lib
+
+Example of simple RL: DQN's <- not using moving forward. don't need to reinvent the wheel. 
+
+What kinds of problems to look into with Gymnasium? 
+- tutorial
+- classic control
+- then to modern like MuJoCo
+
+READINGS: 
+- Use this RL book and the Russell & Norvig AI book. 
+
+meet in 2 weeks (6/18/25), make sure you have gotten through chapter 6 by this time. Have questions prepared for each chapter. 
