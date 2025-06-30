@@ -1,3 +1,8 @@
-import ray
+from ray import tune
 
-ray.init()
+tune.run("PPO", 
+         config = {"env": "CartPole-v1", 
+                   # other configurations go here
+                   # if none supplied, default will be used
+                   }
+            )
