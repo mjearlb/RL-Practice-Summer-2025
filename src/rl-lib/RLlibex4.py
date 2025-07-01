@@ -5,6 +5,13 @@ import gymnasium as gym
 import torch
 import time
 
+# This example trains an RL-Lib PPO 
+# algo on CartPole-v1. It then displays 
+# an example run of CartPole-v1 using 
+# Gymnasium's human renderer. 
+# 
+# This uses the new API stack from RL-Lib. 
+
 # Set the config settings
 config = (
     PPOConfig()
