@@ -37,12 +37,11 @@ env = gym.make("CartPole-v1", render_mode="human")
 obs, info = env.reset()
 
 episode_over = False
-#print("\n\n\n\n                 STARTING\n\n\n\n")
+
 while not episode_over: 
     module = ppo.get_module("default_policy") # Get the module
     obs_tensor = torch.tensor(obs, dtype=torch.float32).unsqueeze(0) # Prepare the observation
     out = module.forward_inference({"obs": obs_tensor}) # Forward pass
-    #print("\n\n\n\nOutput keys:", out.keys())
 
     #action = torch.argmax(out["action_dist_inputs"], dim=1).item()
     action = torch.argmax(out["action_dist_inputs"][0]).item()
