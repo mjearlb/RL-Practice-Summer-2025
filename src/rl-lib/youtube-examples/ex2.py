@@ -68,4 +68,8 @@ def run(episodes, is_training=True, render=False):
         f.close()
 
 if __name__ == '__main__': 
-    run(1, is_training=False, render=True)
+    # To train
+    run(150000)
+
+    # To see how the agent does after training 
+    #run(1, is_training=False, render=True)
