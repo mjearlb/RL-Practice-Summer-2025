@@ -4,6 +4,7 @@ import gymnasium as gym
 
 # Following this tutorial: https://gymnasium.farama.org/introduction/create_custom_env/
 
+# Step 1: Environmental __init__
 class GridWorldEnv(gym.Env): 
     def __init__(self, size: int = 5): 
         # The size of the grid world (default == 5)
@@ -34,3 +35,23 @@ class GridWorldEnv(gym.Env):
             2: np.array([-1,0]), # Move Left (negative x)
             3: np.array([0,-1]), # Move Down (negative y)
         }
+# Step 2: Constructing Observations
+def _get_obs(self): 
+    """"Convert internal state to observation format
+    
+    Returns: 
+        dict: Observation with agent and target positions
+    """
+    return {"agent": self._agent_location, "target": self._target_location}
+
+def _get_info(self): 
+    """Compute auxiliary information for debugging. 
+    
+    Returns: 
+        dict: Info with distance between agent and target
+    """
+    return {
+        "distance": np.linalg.norm(
+            self._agent_location - self._target_location, ord=1
+        )
+    }
