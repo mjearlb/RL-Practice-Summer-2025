@@ -36,6 +36,7 @@ class GridWorldEnv(gym.Env):
             3: np.array([0,-1]), # Move Down (negative y)
         }
 # Step 2: Constructing Observations
+# These helper functions will be used by Env.reset() and Env.step()
 def _get_obs(self): 
     """"Convert internal state to observation format
     
@@ -55,3 +56,38 @@ def _get_info(self):
             self._agent_location - self._target_location, ord=1
         )
     }
+
+# Step 3: Reset function
+# Starts a new episode. Has 2 optional param's: seed for 
+# reproducible seed generation and options for additional
+# configs. 
+# Our reset() will randomly place the agent and target 
+# in the gridworld. We will return initial obs and info as
+# a tuple. 
+def reset(self, seed: Optional[int] = None, options: Optional[dict] = None): 
+    """Start a new episode
+    
+    Args: 
+        seed: Random seed for reproducible episodes
+        options: Additional configuration (unused in this example)
+        
+    Returns: 
+        tuple: (observation, info) for the initial state
+    """
+    # IMPORTANT: Must call this first to seed the random number generator
+    super().reset(seed=seed)
+
+    # Randomly place the agent anywhere in the grid
+    self._agent_location = self.np_random.integers(0, self.size, size=2, dtype=int)
+
+    # Randomly place the target, ensuring it's different from the agent position
+    self._target_location = self._agent_location
+    while np.array_equal(self._target_location, self._agent_location):
+            self._target_location = self.np_random.integers(
+                0, self.size, size=2, dtype=int
+            )
+    
+    observation = self._get_obs()
+    info = self._get_info()
+
+    return observation, info
